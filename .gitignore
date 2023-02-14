@@ -4,5 +4,6 @@
 bin/
 obj/
 .vs/
+**/results/*
 *.opt
 *.log
