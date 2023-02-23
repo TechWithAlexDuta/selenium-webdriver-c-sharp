@@ -9,16 +9,36 @@ using System.Threading.Tasks;
 
 namespace Utils.Reports
 {
-    public class ExtentReporting
+    public sealed class ExtentReporting
     {
-        private static ExtentReports extentReports;
-        private static ExtentTest extentTest;
+        private static ExtentReporting instance = null;
+        private static readonly object myLock = new object();
+
+        private ExtentReports extentReports;
+        private ExtentTest extentTest;
+
+        private ExtentReporting() { }
+
+        public static ExtentReporting Instance
+        {
+            get
+            {
+                lock (myLock)
+                {
+                    if (instance == null)
+                    {
+                        instance = new ExtentReporting();
+                    }
+                    return instance;
+                }
+            }
+        }
 
         /// <summary>
         /// Create ExtentReporting and attach ExtentHtmlReporter
         /// </summary>
         /// <returns></returns>
-        private static ExtentReports StartReporting()
+        private ExtentReports StartReporting()
         {
             var path = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location) + @"..\..\..\..\results\";
 
@@ -39,7 +59,7 @@ namespace Utils.Reports
         /// Create a new Test in reporter
         /// </summary>
         /// <param name="testName"></param>
-        public static void CreateTest(string testName)
+        public void CreateTest(string testName)
         {
             extentTest = StartReporting().CreateTest(testName);
         }
@@ -47,7 +67,7 @@ namespace Utils.Reports
         /// <summary>
         /// update/flush the info to reporter
         /// </summary>
-        public static void EndReporting()
+        public void EndReporting()
         {
             StartReporting().Flush();   
         }
@@ -56,7 +76,7 @@ namespace Utils.Reports
         /// Log info message in report
         /// </summary>
         /// <param name="info"></param>
-        public static void LogInfo(string info)
+        public void LogInfo(string info)
         {
             extentTest.Info(info);
         }
@@ -65,7 +85,7 @@ namespace Utils.Reports
         /// Log pass message in report
         /// </summary>
         /// <param name="info"></param>
-        public static void LogPass(string info)
+        public void LogPass(string info)
         {
             extentTest.Pass(info);
         }
@@ -74,7 +94,7 @@ namespace Utils.Reports
         /// Log fail message in report
         /// </summary>
         /// <param name="info"></param>
-        public static void LogFail(string info)
+        public void LogFail(string info)
         {
             extentTest.Fail(info);  
         }
@@ -84,7 +104,7 @@ namespace Utils.Reports
         /// </summary>
         /// <param name="info"></param>
         /// <param name="image"></param>
-        public static void LogScreenshot(string info, string image)
+        public void LogScreenshot(string info, string image)
         {
             extentTest.Info(info, MediaEntityBuilder.CreateScreenCaptureFromBase64String(image).Build());   
         }

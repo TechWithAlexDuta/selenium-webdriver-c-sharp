@@ -1,4 +1,5 @@
-﻿using OpenQA.Selenium;
+﻿using NUnit.Allure.Core;
+using OpenQA.Selenium;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -24,7 +25,7 @@ namespace PageObjects.PageObjects
         //methods
         public WebFormPage WriteTextToTextArea(string text)
         {
-            ExtentReporting.LogInfo($"Write '{text}' to text area");
+            ExtentReporting.Instance.LogInfo($"Write '{text}' to text area");
 
             TextArea.SendKeys(text);
 
@@ -33,7 +34,7 @@ namespace PageObjects.PageObjects
 
         public TargetPage SubmitForm()
         {
-            ExtentReporting.LogInfo("Click submit form button");
+            ExtentReporting.Instance.LogInfo("Click submit form button");
 
             SubmitBtn.Click();
 

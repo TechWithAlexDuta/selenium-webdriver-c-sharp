@@ -1,0 +1,12 @@
+{
+  "uuid": "09eebc85-52d1-46d7-b04b-6d99dfe3e08a-tc-0-1000",
+  "name": "Tests.Tests.AllureReportTests.AllureReportTest",
+  "children": [
+    "57b5e817-d89b-4c90-a1ab-66837775eeae-tr-0-1001"
+  ],
+  "befores": [],
+  "afters": [],
+  "links": [],
+  "start": 1677155213467,
+  "stop": 1677155220717
+}

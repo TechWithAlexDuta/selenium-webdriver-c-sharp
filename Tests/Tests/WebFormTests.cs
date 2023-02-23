@@ -1,4 +1,5 @@
-﻿using NUnit.Framework;
+﻿using NUnit.Allure.Core;
+using NUnit.Framework;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,12 +10,13 @@ using Utils.Reports;
 
 namespace Tests.Tests
 {
+    [AllureNUnit]
     internal class WebFormTests : TestBase
     {
         [Test]
         public void WriteToTextAreaTest()
         {
-            ExtentReporting.LogInfo("Starting test - submit form");
+            ExtentReporting.Instance.LogInfo("Starting test - submit form");
 
             var text = Guid.NewGuid().ToString();
             var expectedMessage = "Received!";
@@ -31,7 +33,7 @@ namespace Tests.Tests
         [Test]
         public void WriteToTextAreaNegativeTest()
         {
-            ExtentReporting.LogInfo("Starting negative test - submit form");
+            ExtentReporting.Instance.LogInfo("Starting negative test - submit form");
 
             var text = Guid.NewGuid().ToString();
             var expectedMessage = "Received failed!";

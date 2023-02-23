@@ -1,8 +1,11 @@
-﻿using NUnit.Framework;
+﻿using Allure.Net.Commons;
+using AventStack.ExtentReports.Reporter;
+using NUnit.Framework;
 using NUnit.Framework.Interfaces;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
 using PageObjects.PageObjects;
+using RazorEngine.Compilation.ImpromptuInterface.Optimization;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -18,11 +21,13 @@ namespace Tests.Common
         protected IWebDriver Driver { get; private set; }
         protected WebFormPage WebForm { get; private set; }
         protected Browser Browser { get; private set; }
+        protected AllureReporting AllureReport { get; private set; }
 
         [SetUp]
         public void Setup()
         {
-            ExtentReporting.CreateTest(TestContext.CurrentContext.Test.MethodName);
+            ExtentReporting.Instance.CreateTest(TestContext.CurrentContext.Test.MethodName);
+            AllureReport = new AllureReporting();
 
             Driver = new ChromeDriver();
             Driver.Manage().Window.Maximize();
@@ -38,7 +43,8 @@ namespace Tests.Common
         public void TearDown()
         {
             EndTest();
-            ExtentReporting.EndReporting();
+            ExtentReporting.Instance.EndReporting();
+
             Driver.Quit();
         }
 
@@ -47,19 +53,25 @@ namespace Tests.Common
             var testStatus = TestContext.CurrentContext.Result.Outcome.Status;
             var message = TestContext.CurrentContext.Result.Message;
 
-            switch(testStatus)
+            switch (testStatus)
             {
                 case TestStatus.Failed:
-                    ExtentReporting.LogFail($"Test has failed {message}");
+                    ExtentReporting.Instance.LogFail($"Test has failed {message}");
                     break;
                 case TestStatus.Skipped:
-                    ExtentReporting.LogInfo($"Test skipped {message}");
+                    ExtentReporting.Instance.LogInfo($"Test skipped {message}");
                     break;
                 default:
                     break;
             }
 
-            ExtentReporting.LogScreenshot("Ending test", Browser.GetScreenshot());
+            //extent report
+            ExtentReporting.Instance.LogScreenshot("Ending test", Browser.GetScreenshot());
+
+            //allure 
+            var screenshot = Browser.SaveScreenshot();
+            TestContext.AddTestAttachment(screenshot);
+            AllureLifecycle.Instance.AddAttachment("ending test", "image/png", screenshot);
         }
     }
 }
