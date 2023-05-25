@@ -5,13 +5,16 @@ Tutorials and sample web automtion framework using Selenium WebDriver and C#
 - PageObjects
 - Tests
 
-Tech: C#, Selenium WebDriver, NUnit
-Design patterns: Page Object Model
+### Tech
+- C#, Selenium WebDriver, NUnit
+
+### Design patterns
+- Page Object Model
 
 ## Selenium basics, projects
 - SeleniumWebDriverBasics
 
-Tech: C#, Selenium WebDriver, NUnit
+### Tech: C#, Selenium WebDriver, NUnit
 
 Tutorials:
 - First Selenium test
@@ -22,5 +25,5 @@ Tutorials:
 - Wait conditions
 - and more
 
-# Install Visual Studio, Create a a Selenium WebDriver automation project and more
-https://www.youtube.com/@automation100
+# Install Visual Studio, Create a Selenium WebDriver automation project and more
+https://www.youtube.com/@TechWithAlexD

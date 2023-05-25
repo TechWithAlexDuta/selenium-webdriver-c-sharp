@@ -1,3 +1,3 @@
 # Utils project 
-Reporting implementation (Extent Reports)
-Browser's helper methods
+- Reporting implementation (Extent Reports)
+- Browser's helper methods
