@@ -1,15 +1,9 @@
 ﻿using NUnit.Allure.Attributes;
 using NUnit.Allure.Core;
 using NUnit.Framework;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Tests.Common;
-using Utils.Reports;
+using TestsAllureReports.Common;
 
-namespace Tests.Tests
+namespace TestsAllureReports.Tests
 {
     [AllureNUnit]
     internal class AllureReportTests : TestBase
@@ -24,6 +18,26 @@ namespace Tests.Tests
 
             var text = Guid.NewGuid().ToString();
             var expectedMessage = "Received!";
+
+            var message =
+                 WebForm
+                 .WriteTextToTextArea(text)
+                 .SubmitForm()
+                 .GetMessage();
+
+            Assert.That(message, Is.EqualTo(expectedMessage));
+        }
+
+        [Test]
+        [AllureDescription("Write text and submit form - nagative test")]
+        [AllureIssue("Issue-2")]
+        [AllureTms("TMS-2")]
+        public void AllureReportNegativeTest()
+        {
+            AllureReport.LogStep("submit form test - negative test");
+
+            var text = Guid.NewGuid().ToString();
+            var expectedMessage = "Received! - extect to fail";
 
             var message =
                  WebForm

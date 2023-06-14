@@ -1,20 +1,23 @@
 # selenium-webdriver-c-sharp
-Tutorials and sample web automtion framework using Selenium WebDriver and C#
+Tutorials and sample web automtion framework using Selenium WebDriver and C#  
 
 ## Selenium automation framework, projects
-- PageObjects
-- Tests
+- Page objects  
+- Tests  
+- Utils  
 
 ### Tech
-- C#, Selenium WebDriver, NUnit
+- .NET 6   
+- C#  
+- Selenium WebDriver  
+- NUnit  
+- .Net.Test.SDK  
 
 ### Design patterns
-- Page Object Model
+- Page Object Model  
 
 ## Selenium basics, projects
-- SeleniumWebDriverBasics
-
-### Tech: C#, Selenium WebDriver, NUnit
+- TestsSeleniumWebDriverBasics  
 
 Tutorials:
 - First Selenium test
@@ -23,7 +26,8 @@ Tutorials:
 - Find element(s) on the web page
 - Web elements interactions
 - Wait conditions
-- and more
+- Extent reports
+- Allure reports
 
-# Install Visual Studio, Create a Selenium WebDriver automation project and more
+# Please check my YouTube channel for detailed tutorials on automation and more
 https://www.youtube.com/@TechWithAlexD

@@ -1,17 +1,10 @@
-﻿using NUnit.Allure.Core;
-using NUnit.Framework;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Tests.Common;
+﻿using NUnit.Framework;
+using TestsExtentReports.Common;
 using Utils.Reports;
 
-namespace Tests.Tests
+namespace TestsExtentReports.Tests
 {
-    [AllureNUnit]
-    internal class WebFormTests : TestBase
+    internal class ExtentReportsTests : TestBase
     {
         [Test]
         public void WriteToTextAreaTest()

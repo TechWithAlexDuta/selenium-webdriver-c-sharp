@@ -1,2 +1,8 @@
-# Page Object Model
-Page object model samples for https://www.selenium.dev/selenium/web/web-form.html
+# Page Object Model project
+- Page object model samples for WebForm and Target pages.
+- WEB app: https://www.selenium.dev/selenium/web/web-form.html
+
+### Tech
+- .NET 6.0
+- C#
+- Selenium WebDriver 4

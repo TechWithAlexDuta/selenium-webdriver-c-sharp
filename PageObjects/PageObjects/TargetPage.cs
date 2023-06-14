@@ -1,15 +1,12 @@
 ﻿using OpenQA.Selenium;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace PageObjects.PageObjects
 {
     public class TargetPage
     {
+        #region locators
         IWebElement Message => driver.FindElement(By.Id("message"));
+        #endregion locators
 
         IWebDriver driver;
 
@@ -18,9 +15,11 @@ namespace PageObjects.PageObjects
             this.driver = driver;
         }
 
+        #region methods
         public string GetMessage()
         {
-            return Message.Text;    
+            return Message.Text;
         }
+        #endregion methods
     }
 }

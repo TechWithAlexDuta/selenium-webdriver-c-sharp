@@ -1,17 +1,12 @@
 ﻿using AventStack.ExtentReports;
 using AventStack.ExtentReports.Reporter;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Reflection;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Utils.Reports
 {
     public sealed class ExtentReporting
     {
-        private static ExtentReporting instance = null;
+        private static ExtentReporting? instance = null;
         private static readonly object myLock = new object();
 
         private ExtentReports extentReports;
@@ -42,7 +37,7 @@ namespace Utils.Reports
         {
             var path = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location) + @"..\..\..\..\results\";
 
-            if(extentReports == null)
+            if (extentReports == null)
             {
                 Directory.CreateDirectory(path);
 
@@ -69,7 +64,7 @@ namespace Utils.Reports
         /// </summary>
         public void EndReporting()
         {
-            StartReporting().Flush();   
+            StartReporting().Flush();
         }
 
         /// <summary>
@@ -96,7 +91,7 @@ namespace Utils.Reports
         /// <param name="info"></param>
         public void LogFail(string info)
         {
-            extentTest.Fail(info);  
+            extentTest.Fail(info);
         }
 
         /// <summary>
@@ -106,7 +101,7 @@ namespace Utils.Reports
         /// <param name="image"></param>
         public void LogScreenshot(string info, string image)
         {
-            extentTest.Info(info, MediaEntityBuilder.CreateScreenCaptureFromBase64String(image).Build());   
+            extentTest.Info(info, MediaEntityBuilder.CreateScreenCaptureFromBase64String(image).Build());
         }
     }
 }

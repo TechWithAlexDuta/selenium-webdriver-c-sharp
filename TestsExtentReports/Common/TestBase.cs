@@ -1,36 +1,29 @@
-﻿using Allure.Net.Commons;
-using AventStack.ExtentReports.Reporter;
+﻿using NUnit.Framework.Interfaces;
 using NUnit.Framework;
-using NUnit.Framework.Interfaces;
-using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
+using OpenQA.Selenium;
 using PageObjects.PageObjects;
-using RazorEngine.Compilation.ImpromptuInterface.Optimization;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Utils.Common;
 using Utils.Reports;
 
-namespace Tests.Common
+namespace TestsExtentReports.Common
 {
     internal class TestBase
     {
         protected IWebDriver Driver { get; private set; }
         protected WebFormPage WebForm { get; private set; }
         protected Browser Browser { get; private set; }
-        protected AllureReporting AllureReport { get; private set; }
 
         [SetUp]
         public void Setup()
         {
             ExtentReporting.Instance.CreateTest(TestContext.CurrentContext.Test.MethodName);
-            AllureReport = new AllureReporting();
 
+            //this can be updated to work for multiple browsers (e.g. based on a value set in JSON config)
             Driver = new ChromeDriver();
+            
             Driver.Manage().Window.Maximize();
+            //this can be moved to JSON config
             Driver.Navigate().GoToUrl("https://www.selenium.dev/selenium/web/web-form.html");
             Driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(10);
 
@@ -65,13 +58,7 @@ namespace Tests.Common
                     break;
             }
 
-            //extent report
             ExtentReporting.Instance.LogScreenshot("Ending test", Browser.GetScreenshot());
-
-            //allure 
-            var screenshot = Browser.SaveScreenshot();
-            TestContext.AddTestAttachment(screenshot);
-            AllureLifecycle.Instance.AddAttachment("ending test", "image/png", screenshot);
         }
     }
 }
