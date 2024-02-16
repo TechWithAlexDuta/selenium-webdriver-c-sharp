@@ -4,7 +4,7 @@ using OpenQA.Selenium.Chrome;
 using OpenQA.Selenium;
 using PageObjects.PageObjects;
 using Utils.Common;
-using Utils.Reports;
+using Utils.Reports.Extent;
 
 namespace TestsExtentReports.Common
 {

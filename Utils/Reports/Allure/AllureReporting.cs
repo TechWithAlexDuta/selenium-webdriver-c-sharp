@@ -1,8 +1,8 @@
 ﻿using NUnit.Allure.Attributes;
 
-namespace Utils.Reports
+namespace Utils.Reports.Allure
 {
-    public class AllureReporting
+    public class AllureReporting : IAllureReporting
     {
         [AllureStep("{0}")]
         public void LogStep(string message)

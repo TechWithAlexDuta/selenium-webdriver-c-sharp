@@ -2,7 +2,7 @@
 using AventStack.ExtentReports.Reporter;
 using System.Reflection;
 
-namespace Utils.Reports
+namespace Utils.Reports.Extent
 {
     public sealed class ExtentReporting
     {

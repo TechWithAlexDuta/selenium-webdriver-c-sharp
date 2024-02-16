@@ -5,7 +5,7 @@ using OpenQA.Selenium.Chrome;
 using OpenQA.Selenium;
 using PageObjects.PageObjects;
 using Utils.Common;
-using Utils.Reports;
+using Utils.Reports.Allure;
 
 namespace TestsAllureReports.Common
 {
@@ -13,8 +13,8 @@ namespace TestsAllureReports.Common
     {
         protected IWebDriver Driver { get; private set; }
         protected WebFormPage WebForm { get; private set; }
-        protected Browser Browser { get; private set; }
-        protected AllureReporting AllureReport { get; private set; }
+        protected IBrowser Browser { get; private set; }
+        protected IAllureReporting AllureReport { get; private set; }
 
         [SetUp]
         public void Setup()

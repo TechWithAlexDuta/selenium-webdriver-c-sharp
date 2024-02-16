@@ -23,10 +23,12 @@ namespace SeleniumWebDriverProject.Tests
             Assert.That(driver.Title, Is.EqualTo("Selenium"));
 
             //class name
+            //search is not available on landing page (tested on 16.02.2024), you can use another class name like: navbar-brand
             var classNameValidator = driver.FindElement(By.ClassName("DocSearch")).Displayed;
             Assert.That(classNameValidator, Is.EqualTo(true));
 
             //css selector
+            //search is not available on landing page (tested on 16.02.2024), you can use another css selector like .navbar-brand
             var cssSelectorValidator = driver.FindElement(By.CssSelector(".DocSearch")).Displayed;
             Assert.That(cssSelectorValidator, Is.EqualTo(true));
 

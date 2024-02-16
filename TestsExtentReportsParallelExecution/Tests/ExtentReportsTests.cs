@@ -1,15 +1,16 @@
 ﻿using NUnit.Framework;
-using TestsExtentReports.Common;
+using TestsExtentReportsParallelExecution.Common;
 using Utils.Reports.Extent;
 
-namespace TestsExtentReports.Tests
+namespace TestsExtentReportsParallelExecution.Tests
 {
+    [Parallelizable(ParallelScope.All)] 
     internal class ExtentReportsTests : TestBase
     {
         [Test]
         public void WriteToTextAreaTest()
         {
-            ExtentReporting.Instance.LogInfo("Starting test - submit form");
+            ExtentParallelReporting.Instance.LogInfo("Starting test - submit form");
 
             var text = Guid.NewGuid().ToString();
             var expectedMessage = "Received!";
@@ -26,7 +27,7 @@ namespace TestsExtentReports.Tests
         [Test]
         public void WriteToTextAreaNegativeTest()
         {
-            ExtentReporting.Instance.LogInfo("Starting negative test - submit form");
+            ExtentParallelReporting.Instance.LogInfo("Starting negative test - submit form");
 
             var text = Guid.NewGuid().ToString();
             var expectedMessage = "Received failed!";

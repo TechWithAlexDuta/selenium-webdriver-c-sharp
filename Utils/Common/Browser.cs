@@ -8,11 +8,11 @@ using System.Threading.Tasks;
 
 namespace Utils.Common
 {
-    public class Browser
+    public class Browser : IBrowser
     {
         private IWebDriver driver;
 
-        public Browser (IWebDriver driver)
+        public Browser(IWebDriver driver)
         {
             this.driver = driver;
         }
@@ -37,7 +37,8 @@ namespace Utils.Common
             string filePath = directory + fileName;
 
             var file = ((ITakesScreenshot)driver).GetScreenshot();
-            file.SaveAsFile(filePath, ScreenshotImageFormat.Png);
+            //[Obsolete("Support for decoding/encoding between different image formats is deprecated; use SaveAsFile(string fileName) method instead")]
+            file.SaveAsFile(filePath);
 
             return filePath;
         }
