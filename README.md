@@ -20,9 +20,9 @@ Tutorials and sample web automation framework using Selenium WebDriver and C#
     ```PS
     dotnet build
     ```
-4. Run the tests using your preferred test runner or IDE. From terminal, in your project folder e.g.
+4. Run the tests using your preferred test runner or IDE. From terminal, in your project folder, change "net_version" and "project_name" e.g.
     ```PS
-    dotnet test .\bin\Debug\<net_version>\<project_name>.dll
+    dotnet test .\bin\Debug\net_version\project_name.dll
     ```
 5. Optional: check reports (depending on the project you run, the reports may by integrated with ExtentReports or Allure)
 
