@@ -1,8 +1,6 @@
-﻿namespace Utils.Common
+﻿namespace Utils.Common;
+public interface IBrowser
 {
-    public interface IBrowser
-    {
-        string GetScreenshot();
-        string SaveScreenshot();
-    }
+    string GetScreenshot();
+    string SaveScreenshot();
 }

@@ -4,33 +4,39 @@ using OpenQA.Selenium;
 using PageObjects.PageObjects;
 using Utils.Common;
 using Utils.Reports.Extent;
+using Autofac;
 
-namespace TestsExtentReportsParallelExecution.Common;
+namespace TestsDI.Common;
 
 //
 // Summary:
 //      Setup and teardown methods
 internal class TestBase
 {
+    protected IWebDriver? Driver { get; private set; }
     protected WebFormPage? WebForm { get; private set; }
-    protected Browser? Browser { get; private set; }
+    protected IBrowser? Browser { get; private set; }
 
     [SetUp]
     public void Setup()
     {
-        ExtentParallelReporting.Instance.CreateTest(
+        var container = ContainerConfig.Configure();
+
+        ExtentReporting.Instance.CreateTest(
             TestContext.CurrentContext.Test.MethodName ??
             $"Test{Environment.CurrentManagedThreadId}"
         );
 
-        GetDriver().Manage().Window.Maximize();
+        Driver = container.Resolve<IWebDriver>();
+
+        Driver.Manage().Window.Maximize();
         //this can be moved to JSON config
-        GetDriver().Navigate().GoToUrl("https://www.selenium.dev/selenium/web/web-form.html");
-        GetDriver().Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(10);
+        Driver.Navigate().GoToUrl("https://www.selenium.dev/selenium/web/web-form.html");
+        Driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(10);
 
-        Browser = new Browser(GetDriver());
+        Browser = container.Resolve<IBrowser>();
 
-        WebForm = new WebFormPage(GetDriver());
+        WebForm = container.Resolve<WebFormPage>();
     }
 
     [TearDown]
@@ -39,12 +45,13 @@ internal class TestBase
         try
         {
             EndTest();
-            ExtentParallelReporting.Instance.EndReporting();
+            ExtentReporting.Instance.EndReporting();
         }
         finally
         {
-            QuitDriver();
+            Driver?.Quit();
         }
+
     }
 
     private void EndTest()
@@ -55,25 +62,15 @@ internal class TestBase
         switch (testStatus)
         {
             case TestStatus.Failed:
-                ExtentParallelReporting.Instance.LogFail($"Test has failed {message}");
+                ExtentReporting.Instance.LogFail($"Test has failed {message}");
                 break;
             case TestStatus.Skipped:
-                ExtentParallelReporting.Instance.LogInfo($"Test skipped {message}");
+                ExtentReporting.Instance.LogInfo($"Test skipped {message}");
                 break;
             default:
                 break;
         }
 
-        ExtentParallelReporting.Instance.LogScreenshot("Ending test", Browser?.GetScreenshot());
-    }
-
-    private IWebDriver GetDriver()
-    {
-        return WebDriverFactory.GetDriver();
-    }
-
-    private void QuitDriver()
-    {
-        WebDriverFactory.QuitDriver();
+        ExtentReporting.Instance.LogScreenshot("Ending test", Browser?.GetScreenshot());
     }
 }

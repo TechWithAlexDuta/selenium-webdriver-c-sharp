@@ -2,8 +2,12 @@
 using TestsExtentReports.Common;
 using Utils.Reports.Extent;
 
-namespace TestsExtentReports.Tests
-{
+namespace TestsExtentReports.Tests;
+//
+// Summary:
+//      Sample Selenium tests: positive and negative scenarios
+// Run:
+//      dotnet test .\bin\Debug\net8.0\TestsExtentReports.dll
     internal class ExtentReportsTests : TestBase
     {
         [Test]
@@ -15,7 +19,7 @@ namespace TestsExtentReports.Tests
             var expectedMessage = "Received!";
 
             var message =
-                 WebForm
+                 WebForm?
                  .WriteTextToTextArea(text)
                  .SubmitForm()
                  .GetMessage();
@@ -32,7 +36,7 @@ namespace TestsExtentReports.Tests
             var expectedMessage = "Received failed!";
 
             var message =
-                 WebForm
+                 WebForm?
                  .WriteTextToTextArea(text)
                  .SubmitForm()
                  .GetMessage();
@@ -40,4 +44,3 @@ namespace TestsExtentReports.Tests
             Assert.That(message, Is.EqualTo(expectedMessage));
         }
     }
-}

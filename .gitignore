@@ -7,3 +7,5 @@ obj/
 **/results/*
 *.opt
 *.log
+# Visual Studio Code
+.vscode

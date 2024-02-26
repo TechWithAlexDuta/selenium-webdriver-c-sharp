@@ -1,7 +1,5 @@
-﻿namespace Utils.Reports.Allure
+﻿namespace Utils.Reports.Allure;
+public interface IAllureReporting
 {
-    public interface IAllureReporting
-    {
-        void LogStep(string message);
-    }
+    void LogStep(string message);
 }

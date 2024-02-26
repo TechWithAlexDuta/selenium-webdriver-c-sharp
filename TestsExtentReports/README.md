@@ -1,8 +1,8 @@
-# Selenium framework using Extent reports (html)
-Tutorials and sample web automtion framework using Page Object Models and Extent reports
+# Selenium framework: Extent reports
+Tutorials and sample web automation framework using Page Object Models and Extent reports
 
-### Tech
-- .NET 6.0
+## Tech
+- .NET 8.0
 - C#
 - Selenium WebDriver 4
 - NUnit 3

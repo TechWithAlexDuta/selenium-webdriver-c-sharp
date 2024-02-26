@@ -15,6 +15,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TestsAllureReports", "Tests
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestsExtentReportsParallelExecution", "TestsExtentReportsParallelExecution\TestsExtentReportsParallelExecution.csproj", "{161BD8C1-0F5F-4669-95A7-8375E54ED40B}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestsDI", "TestsDI\TestsDI.csproj", "{91ED3754-663F-482B-978B-020739C049AB}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -45,6 +47,14 @@ Global
 		{161BD8C1-0F5F-4669-95A7-8375E54ED40B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{161BD8C1-0F5F-4669-95A7-8375E54ED40B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{161BD8C1-0F5F-4669-95A7-8375E54ED40B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{080091E9-F2FD-48B1-9B3F-3E07CCC8C54C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{080091E9-F2FD-48B1-9B3F-3E07CCC8C54C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{080091E9-F2FD-48B1-9B3F-3E07CCC8C54C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{080091E9-F2FD-48B1-9B3F-3E07CCC8C54C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{91ED3754-663F-482B-978B-020739C049AB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{91ED3754-663F-482B-978B-020739C049AB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{91ED3754-663F-482B-978B-020739C049AB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{91ED3754-663F-482B-978B-020739C049AB}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

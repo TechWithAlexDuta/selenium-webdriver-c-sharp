@@ -1,41 +1,43 @@
 ﻿using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
 
-namespace TestsExtentReportsParallelExecution.Common
+namespace TestsExtentReportsParallelExecution.Common;
+
+//
+// Summary:
+//      Factory class for WebDriver
+internal class WebDriverFactory
 {
-    internal class WebDriverFactory
+
+    private static ThreadLocal<IWebDriver?> webDriverThreadLocal = new ThreadLocal<IWebDriver?>();
+    private static readonly object myLock = new object();
+
+    public static IWebDriver GetDriver()
     {
-
-        private static ThreadLocal<IWebDriver> webDriverThreadLocal = new ThreadLocal<IWebDriver>();
-        private static readonly object myLock = new object();
-
-        public static IWebDriver GetDriver()
+        lock (myLock)
         {
-            lock (myLock)
+            IWebDriver? driver = webDriverThreadLocal.Value;
+
+            if (driver == null)
             {
-                IWebDriver driver = webDriverThreadLocal.Value;
+                driver = new ChromeDriver();
 
-                if (driver == null)
-                {
-                    driver = new ChromeDriver();
-
-                    webDriverThreadLocal.Value = driver;
-                }
-                return driver;
+                webDriverThreadLocal.Value = driver;
             }
+            return driver;
         }
+    }
 
-        public static void QuitDriver()
+    public static void QuitDriver()
+    {
+        lock (myLock)
         {
-            lock (myLock)
-            {
-                IWebDriver driver = webDriverThreadLocal.Value;
+            IWebDriver? driver = webDriverThreadLocal.Value;
 
-                if (driver != null)
-                {
-                    driver.Quit();
-                    webDriverThreadLocal.Value = null;
-                }
+            if (driver != null)
+            {
+                driver.Quit();
+                webDriverThreadLocal.Value = null;
             }
         }
     }

@@ -1,21 +1,20 @@
 ﻿using NUnit.Framework;
-using TestsExtentReportsParallelExecution.Common;
+using TestsDI.Common;
 using Utils.Reports.Extent;
 
-namespace TestsExtentReportsParallelExecution.Tests;
+namespace TestsDI.Tests;
 
 //
 // Summary:
 //      Sample Selenium tests: positive and negative scenarios
 // Run:
-//      dotnet test .\bin\Debug\net8.0\TestsExtentReportsParallelExecution.dll
-[Parallelizable(ParallelScope.All)]
+//      dotnet test .\bin\Debug\net8.0\TestsDI.dll
 internal class ExtentReportsTests : TestBase
 {
     [Test]
     public void WriteToTextAreaTest()
     {
-        ExtentParallelReporting.Instance.LogInfo("Starting test - submit form");
+        ExtentReporting.Instance.LogInfo("Starting test - submit form");
 
         var text = Guid.NewGuid().ToString();
         var expectedMessage = "Received!";
@@ -32,7 +31,7 @@ internal class ExtentReportsTests : TestBase
     [Test]
     public void WriteToTextAreaNegativeTest()
     {
-        ExtentParallelReporting.Instance.LogInfo("Starting negative test - submit form");
+        ExtentReporting.Instance.LogInfo("Starting negative test - submit form");
 
         var text = Guid.NewGuid().ToString();
         var expectedMessage = "Received failed!";

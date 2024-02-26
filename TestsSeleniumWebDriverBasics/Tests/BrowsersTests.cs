@@ -1,52 +1,51 @@
 ﻿using NUnit.Framework;
 using OpenQA.Selenium.Chrome;
 using OpenQA.Selenium;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using OpenQA.Selenium.Firefox;
 using OpenQA.Selenium.Edge;
 
-namespace SeleniumWebDriverProject.Tests
+namespace TestsSeleniumWebDriverBasics.Tests;
+
+//
+// Summary:
+//      Browsers instantiation tests
+// Run:
+//      dotnet test .\bin\Debug\<net_version>\<project_name>>.dll
+internal class BrowsersTests
 {
-    internal class BrowsersTests
+    [Test]
+    public void ChromeBrowser()
     {
-        [Test]
-        public void ChromeBrowser()
-        {
-            IWebDriver driver = new ChromeDriver();
+        IWebDriver driver = new ChromeDriver();
 
-            driver.Navigate().GoToUrl("https://www.selenium.dev/");
+        driver.Navigate().GoToUrl("https://www.selenium.dev/");
 
-            Assert.That(driver.Title, Is.EqualTo("Selenium"));
+        Assert.That(driver.Title, Is.EqualTo("Selenium"));
 
-            driver.Quit();
-        }
+        driver.Quit();
+    }
 
-        [Test]
-        public void FirefoxBrowser()
-        {
-            IWebDriver driver = new FirefoxDriver();
+    [Test]
+    public void FirefoxBrowser()
+    {
+        IWebDriver driver = new FirefoxDriver();
 
-            driver.Navigate().GoToUrl("https://www.selenium.dev/");
+        driver.Navigate().GoToUrl("https://www.selenium.dev/");
 
-            Assert.That(driver.Title, Is.EqualTo("Selenium"));
+        Assert.That(driver.Title, Is.EqualTo("Selenium"));
 
-            driver.Quit();
-        }
+        driver.Quit();
+    }
 
-        [Test]
-        public void EdgeBrowser()
-        {
-            IWebDriver driver = new EdgeDriver();
+    [Test]
+    public void EdgeBrowser()
+    {
+        IWebDriver driver = new EdgeDriver();
 
-            driver.Navigate().GoToUrl("https://www.selenium.dev/");
+        driver.Navigate().GoToUrl("https://www.selenium.dev/");
 
-            Assert.That(driver.Title, Is.EqualTo("Selenium"));
+        Assert.That(driver.Title, Is.EqualTo("Selenium"));
 
-            driver.Quit();
-        }
+        driver.Quit();
     }
 }
